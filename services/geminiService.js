@@ -9,7 +9,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // --- CONFIGURATION ---
 // It's best practice to set your API key in an environment variable
-const API_KEY = "AIzaSyCdNBRIiED6RycQjknQ_3Qjg61FdhZaYRo";
+const API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = "gemini-1.5-flash"; // Using a modern, recommended model
 
 // --- INITIALIZATION ---
@@ -64,6 +64,7 @@ async function makeReplacementContextual(
   findQuery,
   replaceQuery
 ) {
+  console.log("FIND AND REPLACE : ", findQuery, replaceQuery);
   const systemPrompt = `
     You are an expert content editor. Your task is to refine a JSON object that has just undergone a crude, programmatic find-and-replace.
     The operation was: replace all instances of "${findQuery}" with "${replaceQuery}".
