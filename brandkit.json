@@ -1,0 +1,30 @@
+{
+  "approvedTerms": [
+    {
+      "term": "Gemini 2.5 Pro",
+      "replaceWith": "Claude Sonnet",
+      "type": "product_name"
+    },
+    {
+      "term": "Alpha Company",
+      "replaceWith": "Omega Corporation",
+      "type": "entity",
+      "associated": {
+        "email": {
+          "find": "contact@alphacompany.com",
+          "replace": "contact@omegacorp.com"
+        }
+      }
+    },
+    {
+      "term": "Google",
+      "replaceWith": "Bing",
+      "type": "link",
+      "url": {
+        "find": "https://google.com",
+        "replace": "https://bing.com"
+      }
+    }
+  ],
+  "bannedTerms": ["synergy", "disrupt", "low-hanging fruit"]
+}

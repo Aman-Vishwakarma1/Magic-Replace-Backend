@@ -1,0 +1,26 @@
+{
+  "name": "magicreplace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@contentstack/management": "^1.25.0",
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.12.2",
+    "compromise": "^14.14.4",
+    "contentstack": "^3.26.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
