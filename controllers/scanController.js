@@ -1,13 +1,4 @@
 const contentstackService = require("../services/contentstackService");
-
-/**
- * Recursively scan an object or array for a query string
- * @param {Object|Array|string} obj
- * @param {string} query
- * @param {string} parentField (used for nested field paths)
- * @param {Array} results
- * @param {string} entryUid
- */
 function scanRecursive(obj, query, parentField, results, entryUid) {
   if (obj == null) return;
 
@@ -49,11 +40,9 @@ async function scan(req, res) {
       .json({ error: "contentTypeUid, query, and entryUids are required" });
   }
 
-  // Ensure entryUids is an array, even if a single UID is passed
   const selectedEntryUids = Array.isArray(entryUids) ? entryUids : [entryUids];
 
   try {
-    // Fetch only the selected entries for the given content type
     const entries = await contentstackService.getEntries(
       contentTypeUid,
       selectedEntryUids
@@ -62,7 +51,6 @@ async function scan(req, res) {
     const matches = [];
 
     entries.forEach((entry) => {
-      // The `scanRecursive` function will now only be called on the selected entries
       scanRecursive(entry, query, "", matches, entry.uid);
     });
 
@@ -81,7 +69,7 @@ async function scan(req, res) {
       matches: enrichedMatches,
     });
   } catch (error) {
-    console.error("❌ Scan error:", error.message);
+    console.error("Scan error:", error.message);
     res.status(500).json({ error: "Failed to scan entries" });
   }
 }

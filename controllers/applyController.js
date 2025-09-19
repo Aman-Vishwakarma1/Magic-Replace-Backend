@@ -1,21 +1,6 @@
-/**
- * @fileoverview Controller to apply approved changes to Contentstack entries.
- * This controller is the final step in the workflow. It receives a specific set of
- * field changes selected by the user from the preview screen and applies them
- * permanently to the corresponding entries in Contentstack.
- */
-
 const contentstackService = require("../services/contentstackService");
 const brandkitService = require("../services/brandkitService");
 
-/**
- * Sets a value on a nested property of an object based on a string path.
- * This function carefully navigates the object structure to apply the change,
- * handling both plain strings and stringified JSON values.
- * @param {object} obj The object to modify.
- * @param {string} path The dot-and-bracket-notation path (e.g., "modular_blocks[0].block.rich_text_editor").
- * @param {*} value The new value to set at the specified path.
- */
 function setNestedValue(obj, path, value) {
   // Convert bracket notation to dot notation for consistent splitting
   const keys = path.replace(/\[(\d+)\]/g, ".$1").split(".");
