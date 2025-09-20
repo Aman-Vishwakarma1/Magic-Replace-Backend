@@ -1,30 +1,275 @@
 {
-  "approvedTerms": [
-    {
-      "term": "Gemini 2.5 Pro",
-      "replaceWith": "Claude Sonnet",
-      "type": "product_name"
+  "meta": {
+    "name": "Acme Brandkit",
+    "version": "1.0.0",
+    "createdBy": "Aman Vishwakarma",
+    "createdAt": "2025-09-20T00:00:00Z",
+    "description": "Sample Contentstack Brandkit JSON — colors, typography, logos, components, tokens, and accessibility rules."
+  },
+  "tokens": {
+    "colors": {
+      "brand": {
+        "primary": {
+          "value": "#0B5FFF",
+          "usage": ["buttons", "links", "interactive"]
+        },
+        "primary-700": {
+          "value": "#084FCC",
+          "usage": ["primary-hover", "focus"]
+        },
+        "accent": {
+          "value": "#FF6B35",
+          "usage": ["callouts", "cta-secondary"]
+        },
+        "accent-700": { "value": "#E05524", "usage": ["accent-hover"] },
+        "neutral": {
+          "100": { "value": "#FFFFFF", "usage": ["background", "surfaces"] },
+          "200": { "value": "#F7F8FA", "usage": ["page-bg", "cards"] },
+          "300": { "value": "#EEF1F6", "usage": ["muted-bg"] },
+          "400": { "value": "#D1D9E6", "usage": ["borders", "disabled"] },
+          "500": { "value": "#97A3BF", "usage": ["muted-text"] },
+          "600": { "value": "#5E6B88", "usage": ["secondary-text"] },
+          "700": { "value": "#2A3550", "usage": ["body-text"] },
+          "800": { "value": "#0F1724", "usage": ["headings", "strong-text"] }
+        },
+        "success": { "value": "#17B890", "usage": ["success-states"] },
+        "warning": { "value": "#F2B705", "usage": ["warnings"] },
+        "danger": { "value": "#E03B3B", "usage": ["errors"] }
+      }
     },
-    {
-      "term": "Alpha Company",
-      "replaceWith": "Omega Corporation",
-      "type": "entity",
-      "associated": {
-        "email": {
-          "find": "contact@alphacompany.com",
-          "replace": "contact@omegacorp.com"
+    "typography": {
+      "families": {
+        "heading": "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
+        "body": "Roboto, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif",
+        "mono": "Menlo, Monaco, 'Courier New', monospace"
+      },
+      "weights": {
+        "light": 300,
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "sizes": {
+        "xs": { "value": "12px", "lineHeight": "16px" },
+        "sm": { "value": "14px", "lineHeight": "20px" },
+        "md": { "value": "16px", "lineHeight": "24px" },
+        "lg": { "value": "20px", "lineHeight": "28px" },
+        "xl": { "value": "24px", "lineHeight": "32px" },
+        "2xl": { "value": "32px", "lineHeight": "40px" },
+        "3xl": { "value": "40px", "lineHeight": "48px" }
+      },
+      "weights-map": {
+        "h1": "700",
+        "h2": "600",
+        "h3": "600",
+        "body": "400",
+        "small": "400"
+      }
+    },
+    "spacing": {
+      "xxs": "4px",
+      "xs": "8px",
+      "sm": "12px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "xxl": "48px"
+    },
+    "radii": {
+      "none": "0px",
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "round": "9999px"
+    },
+    "shadows": {
+      "sm": "0 1px 2px rgba(14, 20, 30, 0.06)",
+      "md": "0 6px 18px rgba(14, 20, 30, 0.08)",
+      "lg": "0 24px 40px rgba(14, 20, 30, 0.12)"
+    },
+    "grid": {
+      "container-width": "1200px",
+      "gutter": "24px",
+      "columns": 12
+    },
+    "motion": {
+      "duration-fast": "120ms",
+      "duration-medium": "240ms",
+      "duration-slow": "420ms",
+      "easing": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+    }
+  },
+  "assets": {
+    "logos": {
+      "logo-primary": {
+        "name": "logo-primary",
+        "url": "https://assets.example.com/logo-primary.svg",
+        "usage": ["header", "footer"],
+        "formats": ["svg", "png"]
+      },
+      "logo-mark": {
+        "name": "logo-mark",
+        "url": "https://assets.example.com/logo-mark.svg",
+        "usage": ["favicon", "social"],
+        "formats": ["svg", "png"]
+      },
+      "logo-inverse": {
+        "name": "logo-inverse",
+        "url": "https://assets.example.com/logo-inverse.svg",
+        "usage": ["dark-mode", "over-image"],
+        "formats": ["svg", "png"]
+      }
+    },
+    "icons": {
+      "search": "https://assets.example.com/icons/search.svg",
+      "close": "https://assets.example.com/icons/close.svg",
+      "menu": "https://assets.example.com/icons/menu.svg"
+    },
+    "illustrations": {
+      "hero-1": "https://assets.example.com/illus/hero-1.svg"
+    }
+  },
+  "components": {
+    "button": {
+      "primary": {
+        "background": "{tokens.colors.brand.primary.value}",
+        "color": "{tokens.colors.brand.neutral.100.value}",
+        "padding": "{tokens.spacing.md}",
+        "radius": "{tokens.radii.md}",
+        "font": "{tokens.typography.families.heading}",
+        "fontWeight": "{tokens.typography.weights.semibold}",
+        "boxShadow": "{tokens.shadows.sm}",
+        "hover": {
+          "background": "{tokens.colors.brand.primary-700.value}"
+        },
+        "disabled": {
+          "background": "{tokens.colors.brand.neutral.400.value}",
+          "color": "{tokens.colors.brand.neutral.300.value}",
+          "cursor": "not-allowed",
+          "opacity": 0.6
+        }
+      },
+      "secondary": {
+        "background": "transparent",
+        "color": "{tokens.colors.brand.primary.value}",
+        "border": "1px solid {tokens.colors.brand.primary.value}",
+        "padding": "{tokens.spacing.md}",
+        "radius": "{tokens.radii.md}",
+        "hover": {
+          "background": "{tokens.colors.brand.primary.value}",
+          "color": "{tokens.colors.brand.neutral.100.value}"
         }
       }
     },
-    {
-      "term": "Google",
-      "replaceWith": "Bing",
-      "type": "link",
-      "url": {
-        "find": "https://google.com",
-        "replace": "https://bing.com"
+    "input": {
+      "default": {
+        "background": "{tokens.colors.brand.neutral.100.value}",
+        "border": "1px solid {tokens.colors.brand.neutral.400.value}",
+        "padding": "{tokens.spacing.sm} {tokens.spacing.md}",
+        "radius": "{tokens.radii.sm}",
+        "focus": {
+          "borderColor": "{tokens.colors.brand.primary.value}",
+          "boxShadow": "0 0 0 4px rgba(11, 95, 255, 0.08)"
+        }
+      }
+    },
+    "card": {
+      "default": {
+        "background": "{tokens.colors.brand.neutral.100.value}",
+        "radius": "{tokens.radii.md}",
+        "padding": "{tokens.spacing.lg}",
+        "boxShadow": "{tokens.shadows.md}"
+      }
+    },
+    "badge": {
+      "info": {
+        "background": "{tokens.colors.brand.accent.value}",
+        "color": "{tokens.colors.brand.neutral.100.value}",
+        "radius": "{tokens.radii.round}",
+        "padding": "4px 8px",
+        "fontSize": "{tokens.typography.sizes.xs.value}"
       }
     }
+  },
+  "accessibility": {
+    "contrast": {
+      "text-on-primary": {
+        "foreground": "{tokens.colors.brand.neutral.100.value}",
+        "background": "{tokens.colors.brand.primary.value}",
+        "ratio": "4.6:1",
+        "meets": ["AA"]
+      },
+      "text-on-accent": {
+        "foreground": "{tokens.colors.brand.neutral.100.value}",
+        "background": "{tokens.colors.brand.accent.value}",
+        "ratio": "3.9:1",
+        "meets": ["AA (large text)"]
+      }
+    },
+    "imageGuidelines": "Provide meaningful alt text for images. Decorative images must use empty alt attributes.",
+    "motionGuidelines": "Provide reduced-motion alternatives and respect 'prefers-reduced-motion'."
+  },
+  "voiceAndTone": {
+    "brandVoice": {
+      "personality": "Confident, helpful, human",
+      "tone": {
+        "default": "friendly and direct",
+        "error": "reassuring and clear",
+        "marketing": "optimistic and compelling"
+      },
+      "dos": [
+        "Be concise",
+        "Use active voice",
+        "Prioritize clarity over cleverness"
+      ],
+      "donts": [
+        "Avoid jargon where possible",
+        "Don't use negative or alarmist phrasing"
+      ]
+    }
+  },
+  "patterns": {
+    "hero": {
+      "layout": "left-content, right-illustration",
+      "heading-size": "{tokens.typography.sizes.2xl.value}",
+      "subheading-size": "{tokens.typography.sizes.md.value}",
+      "cta": ["primary", "secondary"]
+    },
+    "form": {
+      "labelPosition": "top",
+      "fieldSpacing": "{tokens.spacing.sm}",
+      "errorMessageColor": "{tokens.colors.brand.danger.value}"
+    }
+  },
+  "rules": [
+    {
+      "id": "logo-usage",
+      "title": "Logo usage",
+      "description": "Use logo-primary on light backgrounds. Use logo-inverse on dark backgrounds. Leave 16px clear space around logos.",
+      "examples": [
+        { "bg": "#FFFFFF", "logo": "logo-primary" },
+        { "bg": "#0F1724", "logo": "logo-inverse" }
+      ]
+    },
+    {
+      "id": "color-contrast",
+      "title": "Color contrast minimums",
+      "description": "All body text must maintain at least AA contrast ratio (4.5:1). Large text must maintain at least 3:1."
+    },
+    {
+      "id": "headline-capitalization",
+      "title": "Headline capitalization",
+      "description": "Use sentence case for H1-H4. Avoid ALL CAPS for long headings."
+    }
   ],
-  "bannedTerms": ["synergy", "disrupt", "low-hanging fruit"]
+  "examples": {
+    "button-primary": {
+      "html": "<button class=\"btn btn-primary\">Get started</button>",
+      "css": ".btn-primary { background: #0B5FFF; color: #FFFFFF; padding: 12px 20px; border-radius: 8px; }"
+    },
+    "hero-markup": {
+      "html": "<section class=\"hero\"><div class=\"content\"><h1>Build faster</h1><p>Launch quickly with our SDKs.</p><a class=\"btn btn-primary\">Start free</a></div><img src=\"https://assets.example.com/illus/hero-1.svg\" alt=\"Hero illustration\"/></section>"
+    }
+  }
 }

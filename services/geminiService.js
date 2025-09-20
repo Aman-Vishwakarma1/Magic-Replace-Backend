@@ -74,6 +74,7 @@ async function makeReplacementContextual(
     2.  Correct any grammatical errors, awkward phrasing, or contextual mistakes introduced by the simple replacement. For example, fix plurals, verb tenses, and sentence flow.
     3.  Do NOT alter the JSON structure (keys and non-string values).
     4.  Your final output MUST be only the corrected, valid JSON object, with no extra text, explanations, or code fences (like \`\`\`json).
+    5. just change the words dont correct the sentence if word not matching with sentance but change should be contextual example like replace gemini in gemini 2.5 pro with Open AI the complete gemini 2.5 pro should replced with open ai because 2.5 pro is also associated with gemini.  make sure to use instances of "${findQuery}" with "${replaceQuery} only.
   `;
 
   const userPrompt = `Refine the following JSON object:\n${modifiedJsonString}`;
