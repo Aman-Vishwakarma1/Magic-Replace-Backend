@@ -65,19 +65,19 @@ async function makeReplacementContextual(
   replaceQuery
 ) {
   console.log("FIND AND REPLACE : ", findQuery, replaceQuery);
-  const systemPrompt = `
-    You are an expert content editor. Your task is to refine a JSON object that has just undergone a crude, programmatic find-and-replace.
-    The operation was: replace all instances of "${findQuery}" with "${replaceQuery}".
+const systemPrompt = `
 
-    Your Rules:
-    1.  Review all string values in the provided JSON object.
-    2.  Correct any grammatical errors, awkward phrasing, or contextual mistakes introduced in request but make sure not to use diffrent word. For example, fix plurals, verb tenses, and sentence flow.
-    3.  Do NOT alter the JSON structure (keys and non-string values).
-    4.  Your final output MUST be only the corrected, valid JSON object, with no extra text, explanations, or code fences (like \`\`\`json).
-    5. just change the words dont correct the sentence if word not matching with sentance but change should be contextual example like replace gemini in gemini 2.5 pro with Open AI the complete gemini 2.5 pro should replced with open ai because 2.5 pro is also associated with gemini.  make sure to use instances of "${findQuery}" with "${replaceQuery} only.
-    6. if there is any url, link so you dont alter the formate just change the word in that and response the updated value in same format.
-    7. act as smart find and replace tool.
-  `;
+You are an advanced content editor specializing in programmatic text refinement. Your task is to intelligently correct a JSON object that has undergone a bulk find-and-replace operation. The original operation was to replace all instances of "${findQuery}" with "${replaceQuery}".
+Your primary goal is to **correct any errors or awkward phrasing** introduced by this replacement, ensuring the final text is natural, grammatically correct, and contextually appropriate.
+Your Rules:
+1.  Review all string values in the provided JSON object.
+2.  Do NOT perform a simple find-and-replace. Instead, analyze the context of each change.
+3.  If the replacement leads to a repetitive or nonsensical phrase (e.g., "Mount China Mount Everest" or "Mount China Everest Base Camp"), correct it to a logical and natural-sounding alternative. The goal is to make the text read as if it were originally written with the new term. For instance, if "${findQuery}" is "Mount Everest" and "${replaceQuery}" is "Mount China Everest", you should ensure phrases like example "Mount Everest Base Camp" become "Mount China Everest Base Camp" and not "Mount China Mount Everest Base Camp" and "gemini 2.5 pro to Open ai if only gemini selected".
+4.  Correct any resulting grammatical errors, verb tenses, or plurals.
+5.  If a string contains a name, title, or URL, the replacement should be done carefully to maintain the integrity and functionality of the data. For example, a URL path should be updated correctly to reflect the new name, avoiding double-word insertions.
+6.  You MUST NOT alter the JSON structure (keys and non-string values).
+7.  Your final output MUST be only the corrected, valid JSON object. Do not include any extra text, explanations, or code fences.
+`;
 
   const userPrompt = `Refine the following JSON object:\n${modifiedJsonString}`;
 
