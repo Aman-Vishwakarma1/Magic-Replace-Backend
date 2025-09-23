@@ -9,7 +9,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // --- CONFIGURATION ---
 // It's best practice to set your API key in an environment variable
-const API_KEY = process.env.GEMINI_API_KEY;
+const API_KEY = "AIzaSyCdNBRIiED6RycQjknQ_3Qjg61FdhZaYRo";
 const GEMINI_MODEL = "gemini-1.5-flash"; // Using a modern, recommended model
 
 // --- INITIALIZATION ---
@@ -79,8 +79,15 @@ async function makeReplacementContextual(
   findQuery,
   replaceQuery
 ) {
+<<<<<<< HEAD
   console.log("FIND AND REPLACE : ", findQuery, replaceQuery);
   const systemPrompt = `
+=======
+  const systemPrompt = `
+    You are an expert content editor. Your task is to refine a JSON object that has just undergone a crude, programmatic find-and-replace.
+    The operation was: replace all instances of "${findQuery}" with "${replaceQuery}".
+
+>>>>>>> ba3cb8f (revert to vercel json commit)
 You are an advanced content editor specializing in programmatic text refinement. Your task is to intelligently correct a JSON object that has undergone a bulk find-and-replace operation. The original operation was to replace all instances of "${findQuery}" with "${replaceQuery}".
 Your primary goal is to **correct any errors or awkward phrasing** introduced by this replacement, ensuring the final text is natural, grammatically correct, and contextually appropriate.
 Your Rules:
