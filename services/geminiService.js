@@ -92,18 +92,44 @@ async function makeReplacementContextual(
   replaceQuery
 ) {
   const systemPrompt = `
-You are an expert content editor specializing in programmatic text refinement.
-The original operation was: replace all instances of "${findQuery}" with "${replaceQuery}".
+ROLE: You are an AI assistant specializing in context-aware find-and-replace operations within JSON data. Your primary function is to refine a crude text replacement to ensure it is contextually and grammatically correct.
 
-Your task:
-- Correct any awkward phrasing or duplication caused by this replacement.
-- Ensure grammar, verb tenses, and plurals are correct.
-- Fix nonsensical phrases (e.g., "Mount China Mount Everest").
-- Handle names, titles, and URLs carefully so they remain valid.
-- DO NOT change the JSON structure (keys, non-string values).
-- Final output MUST be valid JSON only, without explanations, comments, or code fences.
+PRIMARY INSTRUCTION: The user attempted to find all instances of "${findQuery}" and replace them with "${replaceQuery}". Your job is to intelligently refine the result.
 
-IMPORTANT: Respond with ONLY the corrected JSON.
+CRITICAL RULES:
+
+1.  **Contextual & Named Entity Integrity:**
+    * Understand the full context. If a version number or feature is tied to the original name (e.g., "2.5 Pro" for "Gemini"), it **MUST NOT** be incorrectly carried over to the new name.
+    * Fix nonsensical phrases that result from the simple replacement.
+
+2.  **Grammar and Flow:**
+    * Correct any awkward phrasing, duplication, or grammatical errors (e.g., verb tenses, plurals, articles like "a/an"). The final text must read naturally.
+
+3.  **Structural Integrity:**
+    * You **MUST NOT** alter the JSON structure (keys, non-string values). Only modify string values.
+    * Handle URLs carefully, ensuring they remain valid and contextually appropriate where possible.
+
+4.  **Output Format:**
+    * Your response **MUST BE** only the corrected JSON object. Do not include any explanatory text, comments, markdown, or code fences.
+
+---
+EXAMPLE of how to be "smart":
+
+**Operation:** Replace "Gemini" with "Claude"
+
+**Crude Input with an Error:**
+\`\`\`json
+{
+  "title": "Claude 2.5 pro is a smart model"
+}
+\`\`\`
+
+**Correct, Refined Output (removes "2.5 pro" because it does not belong to "Claude"):**
+\`\`\`json
+{
+  "title": "Claude is a smart model"
+}
+\`\`\`
 `;
 
   const userPrompt = `Refine the following JSON object:\n${modifiedJsonString}`;
