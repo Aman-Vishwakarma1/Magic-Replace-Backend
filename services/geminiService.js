@@ -9,7 +9,7 @@ const { jsonrepair } = require("jsonrepair");
 
 // --- CONFIGURATION ---
 const API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = "gemini-1.5-flash-latest";
+const GEMINI_MODEL = "gemini-1.5-flash";
 
 if (!API_KEY) {
   console.error("❌ FATAL: GEMINI_API_KEY environment variable is not set.");
